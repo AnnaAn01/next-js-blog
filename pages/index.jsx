@@ -1,15 +1,16 @@
-import type { NextPage } from "next";
+// import { NextPage } from "next";
 import Head from "next/head";
 import { PostCard, Categories, PostWidget } from "../components";
+import { getPosts } from "../services";
 
 // this is our Home component, Home route
 
-const posts = [
-  { title: "React Testing", excerpt: "Learn React Testing" },
-  { title: "React with Tailwind", excerpt: "Learn React with Tailwind" },
-];
+// const posts = [
+//   { title: "React Testing", excerpt: "Learn React Testing" },
+//   { title: "React with Tailwind", excerpt: "Learn React with Tailwind" },
+// ];
 
-const Home: NextPage = () => {
+export default function Home({ posts }) {
   return (
     <div className="container mx-auto px-10 mb-8 ">
       <Head>
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
         {/* we'll loop through all our posts inside here */}
         <div className="lg:col-span-8 col-span-1">
           {posts.map((post, index) => (
-            <PostCard post={post} key={post.title} />
+            <PostCard post={post.node} key={post.title} />
           ))}
         </div>
         <div className="lg:col-span-4 col-span-1">
@@ -34,4 +35,15 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+
+
+// a next js way to fetch data inside of our components
+// for this we don't have to write inside of our components
+
+export async function getStaticProps() {
+  const posts = await (getPosts() || []);
+
+  return {
+    props: { posts },
+  };
+}

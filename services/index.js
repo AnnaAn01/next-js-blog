@@ -125,3 +125,7 @@ export const getCategories = async () => {
   const result = await request(graphqlAPI, query);
   return result.categories;
 };
+
+// submitting the comment
+// we'll make an http query to our own next js backend, rather than making a basic graphql query
+export const submitComment = async (obj) => {};

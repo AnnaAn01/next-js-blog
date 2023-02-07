@@ -128,4 +128,14 @@ export const getCategories = async () => {
 
 // submitting the comment
 // we'll make an http query to our own next js backend, rather than making a basic graphql query
-export const submitComment = async (obj) => {};
+export const submitComment = async (obj) => {
+  const result = await fetch("/api/comments", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(obj),
+  });
+
+  return result.json();
+};

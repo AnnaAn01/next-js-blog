@@ -2,6 +2,7 @@
 import Head from "next/head";
 import { PostCard, Categories, PostWidget } from "../components";
 import { getPosts } from "../services";
+import { FeaturedPosts } from "../sections";
 
 // this is our Home component, Home route
 
@@ -17,6 +18,7 @@ export default function Home({ posts }) {
         <title>Next Js Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <FeaturedPosts />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* we'll loop through all our posts inside here */}
         <div className="lg:col-span-8 col-span-1">
